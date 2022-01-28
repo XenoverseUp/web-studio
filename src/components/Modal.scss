@@ -1,0 +1,111 @@
+@import "../HoverSupported.scss";
+
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #f5f5f5;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  padding: 2rem;
+  align-items: center;
+  z-index: 50;
+  animation: fade-in 0.25s ease forwards;
+  background: repeating-linear-gradient(
+      45deg,
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0.2) 10px,
+      rgba(0, 0, 0, 0.3) 10px,
+      rgba(0, 0, 0, 0.3) 20px
+    ),
+    #263238;
+
+  .logo {
+    color: #50565a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    font-size: 1.3rem;
+
+    img {
+      width: 3rem;
+      margin-right: 0.5rem;
+      animation: shake 2s ease-in-out infinite;
+    }
+  }
+
+  .close {
+    position: absolute;
+    top: 0rem;
+    right: 2rem;
+    color: whitesmoke;
+    font-size: 6rem;
+    cursor: pointer;
+    transition: ease 0.1s transform;
+
+    @include hover-supported() {
+      transform: scale(1.05);
+    }
+
+    &:active {
+      animation: fade-in ease 0.1s;
+    }
+  }
+
+  header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    img {
+      width: 10rem;
+    }
+
+    h1 {
+      font-size: 4rem;
+    }
+    p {
+      opacity: 0.7;
+    }
+  }
+
+  section {
+    font-size: 1.5rem;
+
+    select {
+      font-size: 1.5rem;
+      margin-left: 0.7rem;
+      border: none;
+      outline: none;
+      background-color: rgba(255, 255, 255, 0.808);
+      padding: 0em;
+      border-radius: 0.5rem;
+      padding: 0.3em;
+      transition: ease 0.05s all;
+      cursor: pointer;
+
+      &:focus {
+        background-color: white;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+
+      option {
+        padding: 0.5em;
+      }
+    }
+  }
+
+  footer {
+    position: absolute;
+    bottom: 2rem;
+    opacity: 0.1;
+  }
+}

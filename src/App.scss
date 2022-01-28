@@ -1,0 +1,179 @@
+@import "./HoverSupported.scss";
+
+.App {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+
+  .preview {
+    height: 100%;
+    width: 70%;
+  }
+
+  .settings-button {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: content-box;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: ease 0.25s transform;
+
+    @include hover-supported() {
+      transform: scale(1.1);
+    }
+
+    &:active {
+      animation: fade-in ease 0.1s;
+    }
+
+    img {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+
+  .editors {
+    height: 100%;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transition: ease 0.25s all;
+    position: relative;
+
+    .back {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      color: #f5f5f5;
+      opacity: 0.3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .editor-container {
+      width: 100%;
+      max-height: 33.3%;
+      height: 33.3%;
+      transition: ease 0.25s all;
+      display: flex;
+      flex-direction: column;
+      z-index: 3;
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        height: 3rem;
+
+        aside {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+
+          img {
+            height: 80%;
+            margin-right: 0.5rem;
+          }
+        }
+
+        button {
+          border: none;
+          outline: none;
+          background: transparent;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+        }
+      }
+
+      .codemirror-wrapper {
+        width: 100%;
+        height: calc(100% - 3rem) !important;
+        cursor: text !important;
+
+        .CodeMirror {
+          height: 100% !important;
+        }
+      }
+    }
+  }
+}
+
+.phone {
+  display: none;
+}
+
+@media screen and (max-width: 750px) {
+  .App {
+    display: none;
+  }
+
+  .phone {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(to right, #ff6e7f, #bfe9ff) 0% 50% / 300%;
+    animation: bg ease 3s infinite alternate;
+    color: #252525;
+    text-align: center;
+    padding: 2rem;
+
+    header {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 2rem;
+
+      h1 {
+        font-size: 15vw;
+        margin: 1rem auto;
+      }
+
+      img {
+        width: 10rem;
+        height: 10rem;
+        animation: shake-1 2s ease infinite alternate;
+      }
+    }
+
+    footer {
+      position: absolute;
+      bottom: 1rem;
+    }
+  }
+}
+
+@keyframes shake-1 {
+  from {
+    transform: translate(3rem, -3rem);
+  }
+  to {
+    transform: translate(-1rem, 1rem);
+  }
+}
+
+@keyframes bg {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 100% 50%;
+  }
+}
